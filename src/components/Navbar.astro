@@ -1,0 +1,183 @@
+<nav class="nb-wrapper">
+  <div class="nb-container">
+    <a href="/" class="nb-brand">
+      <img src="/imgs/logos/logo.png" alt="Logo" class="nb-logo-img" />
+      <span class="nb-brand-name">Sunny Street</span>
+    </a>
+
+    <div class="nb-menu-section">
+      <div class="nb-nav-links">
+        <a href="/">Inicio</a>
+        <span class="nb-divider">|</span>
+        <a href="/tienda">Tienda</a>
+        <span class="nb-divider">|</span>
+        <a href="/apoyo">Apoyo</a>
+      </div>
+
+      <div class="nb-lang-selector" id="langSelector">
+        <button class="nb-lang-btn" id="langBtn" aria-expanded="false">
+          <img src="/imgs/flags/bandera_es.png" alt="" class="nb-btn-flag" id="currentFlag" />
+          <span id="currentLangText">ES</span>
+          <span class="nb-chevron">▾</span>
+        </button>
+        
+        <ul class="nb-lang-list" id="langList" hidden>
+          <li class="nb-lang-item" data-value="es" data-flag="/imgs/flags/bandera_es.png">
+            <img src="/imgs/flags/bandera_es.png" alt="" class="nb-item-flag" />
+            <span>ES</span>
+          </li>
+          <li class="nb-lang-item" data-value="en" data-flag="/imgs/flags/bandera_en.png">
+            <img src="/imgs/flags/bandera_en.png" alt="" class="nb-item-flag" />
+            <span>EN</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<script>
+  const selector = document.querySelector('#langSelector');
+  const btn = document.querySelector('#langBtn');
+  const list = document.querySelector('#langList');
+  const items = document.querySelectorAll('.nb-lang-item');
+  const currentText = document.querySelector('#currentLangText');
+  const currentFlag = document.querySelector('#currentFlag') as HTMLImageElement;
+
+  if (selector && btn && list) {
+    // Abrir / Cerrar
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const isHidden = list.hasAttribute('hidden');
+      if (isHidden) {
+        list.removeAttribute('hidden');
+        btn.setAttribute('aria-expanded', 'true');
+      } else {
+        list.setAttribute('hidden', '');
+        btn.setAttribute('aria-expanded', 'false');
+      }
+    });
+
+    // Seleccionar opción
+    items.forEach(item => {
+      item.addEventListener('click', () => {
+        const val = item.getAttribute('data-value');
+        const flag = item.getAttribute('data-flag');
+        
+        if (currentText && currentFlag && val && flag) {
+          currentText.textContent = val.toUpperCase();
+          currentFlag.src = flag;
+        }
+        list.setAttribute('hidden', '');
+        btn.setAttribute('aria-expanded', 'false');
+      });
+    });
+
+    // Cerrar al hacer clic fuera
+    document.addEventListener('click', () => {
+      list.setAttribute('hidden', '');
+      btn.setAttribute('aria-expanded', 'false');
+    });
+  }
+</script>
+
+<style>
+  .nb-wrapper {
+    background-color: #FACA5B;
+    width: 100%;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    overflow: visible; /* PERMITE QUE EL MENÚ SALGA DEL NAVBAR */
+  }
+
+  .nb-container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .nb-brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+  }
+
+  .nb-logo-img { height: 50px; width: auto; }
+  .nb-brand-name { color: #1A1A1A; font-size: 24px; font-weight: 800; }
+
+  .nb-menu-section { display: flex; align-items: center; gap: 30px; }
+
+  .nb-nav-links { display: flex; align-items: center; gap: 15px; }
+  .nb-nav-links a {
+    text-decoration: none;
+    color: #1A1A1A;
+    font-weight: 700;
+    font-size: 16px;
+  }
+
+  .nb-divider { color: #1A1A1A; opacity: 0.3; }
+
+  .nb-lang-selector {
+    position: relative; /* Base para el menú absoluto */
+  }
+
+  .nb-lang-btn {
+    background-color: #1A1A1A;
+    color: #FACA5B;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    font-weight: 800;
+    min-width: 110px;
+    justify-content: space-between;
+  }
+
+  .nb-btn-flag { height: 16px; border-radius: 2px; }
+  .nb-chevron { font-size: 12px; }
+
+  .nb-lang-list {
+    position: absolute;
+    top: calc(100% + 5px);
+    left: 0;
+    width: 100%;
+    background-color: #1A1A1A;
+    border-radius: 12px;
+    list-style: none;
+    padding: 8px 0;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+    z-index: 9999;
+  }
+
+  .nb-lang-list[hidden] { display: none; }
+
+  .nb-lang-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 18px;
+    color: #FACA5B;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background 0.2s;
+  }
+
+  .nb-lang-item:hover {
+    background-color: rgba(250, 202, 91, 0.1);
+  }
+
+  .nb-item-flag { height: 14px; border-radius: 2px; }
+</style>

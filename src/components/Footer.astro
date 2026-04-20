@@ -1,0 +1,79 @@
+<footer class="ft-wrapper">
+  <div class="ft-container">
+    <div class="ft-social">
+      <a href="#">
+        <img src="/imgs/social/youtube.png" alt="YouTube" class="ft-social-img" />
+      </a>
+      <a href="#">
+        <img src="/imgs/social/tiktok.png" alt="TikTok" class="ft-social-img" />
+      </a>
+      <a href="#">
+        <img src="/imgs/social/instagram.png" alt="Instagram" class="ft-social-img" />
+      </a>
+    </div>
+
+    <div class="ft-info">
+      <a href="/privacidad" class="ft-link">Aviso de Privacidad</a>
+      <span class="ft-divider">|</span>
+      <span class="ft-copy"
+        >© 2026 Sunny Street. Todos los derechos reservados.</span
+      >
+    </div>
+  </div>
+</footer>
+
+<style>
+  .ft-wrapper {
+    background-color: #2c2d2f;
+    color: #c2c3c5;
+    padding: 25px 0;
+    width: 100%;
+    margin-top: auto;
+  }
+
+  .ft-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .ft-social {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+  }
+
+  .ft-social-img {
+    height: 24px;
+    width: auto;
+    display: block;
+  }
+
+  .ft-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 13px;
+    font-weight: 500;
+  }
+
+  .ft-link {
+    color: #c2c3c5;
+    text-decoration: none;
+  }
+
+  .ft-divider {
+    opacity: 0.4;
+  }
+
+  @media (max-width: 768px) {
+    .ft-container {
+      flex-direction: column;
+      gap: 20px;
+      text-align: center;
+    }
+  }
+</style>
