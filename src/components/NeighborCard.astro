@@ -1,0 +1,83 @@
+---
+interface Props {
+  name: string;
+  role: string;
+  image: string;
+  info: string; // Nueva prop para la biografía
+}
+
+const { name, role, image, info } = Astro.props;
+---
+
+<div 
+  class="neighbor-card" 
+  data-name={name} 
+  data-role={role} 
+  data-image={image} 
+  data-info={info}
+>
+  <div class="img-container">
+    <img src={image} alt={name} class="neighbor-img" />
+  </div>
+  <div class="neighbor-info">
+    <h3 class="neighbor-name">{name}</h3>
+    <span class="neighbor-role">{role}</span>
+  </div>
+</div>
+
+<style>
+  .neighbor-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: white;
+    border-radius: 18px;
+    padding: 15px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid #eee;
+    cursor: pointer; /* Indica que es clicable */
+  }
+
+  .neighbor-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+  }
+
+  .img-container {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #fcfcfc;
+    border-radius: 12px;
+    overflow: hidden;
+  }
+
+  .neighbor-img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain; 
+    padding: 10px; 
+  }
+
+  .neighbor-info {
+    text-align: center;
+    margin-top: 15px;
+  }
+
+  .neighbor-name {
+    margin: 0;
+    font-size: 1.1rem;
+    font-weight: 800;
+    color: #1A1A1A;
+    text-transform: uppercase;
+  }
+
+  .neighbor-role {
+    font-size: 0.85rem;
+    color: #888;
+    font-weight: 600;
+    letter-spacing: 1px;
+  }
+</style>
